@@ -17,15 +17,34 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+        commt_and_push: commt_and_push {
+            compatible = "zmk,behavior-hold-tap";
+            label = "COMMT_AND_PUSH";
+            bindings = <&push_changes>, <&commit_changes>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+        };
     };
 
     macros {
         launch_debug: launch_debug {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press>, <&mo 2 &kp LG(F9)>, <&macro_release>;
-
+            bindings = <&kp LG(F9)>;
             label = "LAUNCH_DEBUG";
+        };
+        commit_changes: commit_changes {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(K)>;
+            label = "COMMIT_CHANGES";
+        };
+        push_changes: push_changes {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LS(K))>;
+            label = "PUSH_CHANGES";
         };
     };
 
@@ -34,11 +53,11 @@
 
         default_layer {
             bindings = <
-&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                                                  &mo 3      &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &none                                                                   &none      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
-&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &none     &kp LCTRL  &kp LALT       &none  &none  &kp LGUI   &kp RCTRL  &none      &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B   &none     &none      &launch_debug  &none  &none  &kp PG_UP  &none      &none      &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BSPC  &kp DEL    &kp END                      &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
+&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                                                            &mo 3      &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
+&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &none                                                                             &none      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
+&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &none     &kp LCTRL  &kp LALT             &none  &none  &kp LGUI       &kp RCTRL  &none      &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B   &none     &none      &commt_and_push 0 0  &none  &none  &launch_debug  &none      &none      &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+&mo 2      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BSPC  &kp DEL    &kp END                            &kp PG_DN      &kp ENTER  &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
@@ -54,11 +73,11 @@
 
         fn {
             bindings = <
-&kp F1  &kp F2     &kp F3    &kp F4      &kp F5     &kp F6  &tog 1                                                &mo 3   &kp F7  &kp F8                &kp F9                     &kp F10  &kp F11  &kp F12
-&trans  &trans     &trans    &trans      &trans     &trans  &none                                                 &none   &trans  &kp LEFT_BRACE        &kp LS(RIGHT_BRACKET)      &trans   &trans   &trans
-&trans  &kp EQUAL  &kp PLUS  &kp DOLLAR  &kp CARET  &trans  &none   &trans  &trans  &none  &none  &trans  &trans  &none   &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE            &trans   &trans   &trans
-&trans  &trans     &trans    &trans      &trans     &trans  &none   &none   &trans  &none  &none  &trans  &none   &none   &trans  &kp LEFT_PARENTHESIS  &kp LS(RIGHT_PARENTHESIS)  &trans   &trans   &trans
-&trans  &trans     &trans    &trans      &trans             &trans  &trans  &trans                &trans  &trans  &trans          &trans                &trans                     &trans   &trans   &trans
+&kp F1  &kp F2     &kp F3    &kp F4      &kp F5     &kp F6  &tog 1                                                &mo 3   &kp F7  &kp F8                &kp F9                     &kp F10         &kp F11  &kp F12
+&trans  &trans     &trans    &trans      &trans     &trans  &none                                                 &none   &trans  &kp LEFT_BRACE        &kp LS(RIGHT_BRACKET)      &trans          &trans   &trans
+&trans  &kp EQUAL  &kp PLUS  &kp DOLLAR  &kp CARET  &trans  &none   &trans  &trans  &none  &none  &trans  &trans  &none   &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE            &kp UNDERSCORE  &trans   &trans
+&trans  &trans     &trans    &trans      &trans     &trans  &none   &none   &trans  &none  &none  &trans  &none   &none   &trans  &kp LEFT_PARENTHESIS  &kp LS(RIGHT_PARENTHESIS)  &trans          &trans   &trans
+&trans  &trans     &trans    &trans      &trans             &trans  &trans  &trans                &trans  &trans  &trans          &trans                &trans                     &trans          &trans   &trans
             >;
         };
 
