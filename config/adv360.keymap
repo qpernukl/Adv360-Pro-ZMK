@@ -17,6 +17,7 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+
         commt_and_push: commt_and_push {
             compatible = "zmk,behavior-hold-tap";
             label = "COMMT_AND_PUSH";
@@ -34,12 +35,14 @@
             bindings = <&kp LG(F9)>;
             label = "LAUNCH_DEBUG";
         };
+
         commit_changes: commit_changes {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LG(K)>;
             label = "COMMIT_CHANGES";
         };
+
         push_changes: push_changes {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -53,11 +56,11 @@
 
         default_layer {
             bindings = <
-&kp EQUAL   &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                                                           &mo 3      &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
-&kp TAB     &kp Q      &kp W     &kp E     &kp R      &kp T   &none                                                                            &none      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
-&kp DELETE  &kp A      &kp S     &kp D     &kp F      &kp G   &none     &kp LGUI  &kp LALT             &none  &none  &kp RCTRL      &kp RGUI   &none      &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
-&kp LSHFT   &kp Z      &kp X     &kp C     &kp V      &kp B   &none     &none     &commt_and_push 0 0  &none  &none  &launch_debug  &none      &none      &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2       &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BSPC  &kp ESC   &kp END                            &kp PG_DN      &kp ENTER  &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
+&kp EQUAL   &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                                                       &mo 3      &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
+&kp TAB     &kp Q      &kp W     &kp E     &kp R      &kp T   &none                                                                        &none      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
+&kp DELETE  &kp A      &kp S     &kp D     &kp F      &kp G   &none     &kp LGUI  &kp LALT             &none  &none  &kp RCTRL  &kp RGUI   &none      &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
+&kp LSHFT   &kp Z      &kp X     &kp C     &kp V      &kp B   &none     &none     &commt_and_push 0 0  &none  &none  &mo 4      &none      &none      &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+&mo 2       &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BSPC  &kp ESC   &kp END                            &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
@@ -88,6 +91,16 @@
 &none  &none         &none         &none         &none         &none         &rgb_ug RGB_MEFS_CMD 5  &bt BT_CLR  &bt BT_CLR  &none  &none  &bt BT_CLR  &bt BT_CLR  &rgb_ug RGB_MEFS_CMD 5  &none         &none         &none         &none         &none         &none
 &none  &none         &none         &none         &none         &none         &none                   &none       &none       &none  &none  &none       &none       &none                   &none         &none         &none         &none         &none         &none
 &none  &none         &none         &bl BL_INC    &bl BL_DEC                  &rgb_ug RGB_TOG         &bl BL_TOG  &none                     &none       &bl BL_TOG  &rgb_ug RGB_TOG                       &bl BL_INC    &bl BL_DEC    &none         &none         &none
+            >;
+        };
+
+        Symbol {
+            bindings = <
+&trans         &kp APOS      &kp LS(LPAR)   &kp LS(RPAR)   &kp SEMI      &kp COMMA      &trans                                                                  &trans  &trans  &trans                &trans           &trans         &trans                 &trans
+&kp LS(EXCL)   &kp LS(LBRC)  &kp LS(TILDE)  &kp LS(DQT)    &kp LS(RBRC)  &kp LS(QMARK)  &trans                                                                  &trans  &trans  &kp SEMICOLON         &kp RIGHT_SHIFT  &kp RIGHT_ALT  &trans                 &trans
+&kp LS(POUND)  &kp LCTRL     &kp EQUAL      &kp LS(UNDER)  &kp LS(DLLR)  &kp LS(STAR)   &trans    &kp LS(PRCNT)  &kp LS(COLON)  &trans  &trans  &trans  &trans  &trans  &trans  &kp DOT               &kp BSPC         &kp TAB        &kp SPACE              &kp ENTER
+&kp LS(AT)     &kp LS(LT)    &kp LS(PIPE)   &kp MINUS      &kp LS(GT)    &kp FSLH       &trans    &trans         &kp LS(STAR)   &trans  &trans  &trans  &trans  &trans  &trans  &kp FSLH              &kp DEL          &kp LS(TAB)    &trans                 &trans
+&kp LS(TILDE)  &kp LS(AMPS)  &kp LBKT       &kp RBKT       &kp LS(PLUS)                 &kp FSLH  &kp DOT        &kp SEMI                       &trans  &tog 0  &trans          &kp LEFT_PARENTHESIS  &kp LBKT         &kp RBKT       &kp RIGHT_PARENTHESIS  &trans
             >;
         };
     };
